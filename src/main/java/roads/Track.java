@@ -10,9 +10,16 @@ import vechicle.Truck;
  *
  * @author Alex
  */
+
+/**
+ * Track is same trace that have 3 lines and speed limit
+ */
 public class Track extends Trace {
 
-
+    /**
+     *
+     * @param speedLimit limit on this road
+     */
     public Track(int speedLimit){
         countLines=3;
         this.speedLimit=speedLimit;

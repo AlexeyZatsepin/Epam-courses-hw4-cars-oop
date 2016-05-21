@@ -7,6 +7,7 @@ package vechicle;
  * @author Alex
  */
 public interface Moveable {
+
     default void move(){
         System.out.println("moved");
     }

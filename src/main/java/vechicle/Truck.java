@@ -7,14 +7,16 @@ package vechicle;
  * @author Alex
  */
 public class Truck extends Car {
-    private int size;
+    private int size;// length
+    private String cargo;
 
-    public Truck(int speed,int weight,String label, String model,int size) {
+    public Truck(int speed, int weight, String label, Manufacturer model, int length) {
         setMaxSpeed(speed);
         setMaxWeightForCargo(weight);
         setLabel(label);
-        setModel(model);
-        setSize(size);
+        setManufacturer(model);
+        setSize(length);
+        setCargo("Empty");
     }
 
     public int getSize() {
@@ -23,5 +25,13 @@ public class Truck extends Car {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 }

@@ -8,9 +8,11 @@ package vechicle;
  */
 public class Bicycle implements Moveable{
     private String color;
+    private String material;
 
-    public Bicycle(String red) {
-        setColor(red);
+    public Bicycle(String color,String material) {
+        setColor(color);
+        setMaterial(material);
     }
 
     @Override
@@ -26,5 +28,11 @@ public class Bicycle implements Moveable{
         this.color = color;
     }
 
+    public String getMaterial() {
+        return material;
+    }
 
+    public void setMaterial(String material) {
+        this.material = material;
+    }
 }

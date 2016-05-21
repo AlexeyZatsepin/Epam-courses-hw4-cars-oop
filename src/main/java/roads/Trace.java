@@ -1,9 +1,8 @@
 package roads;
 
-import vechicle.Car;
-import vechicle.Moveable;
-import vechicle.Truck;
+import vechicle.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,9 +12,10 @@ import java.util.List;
  * @author Alex
  */
 public abstract class Trace {
-    List<Moveable> existsMoveables;
-    int countLines;
-    int speedLimit;
+
+    List<Moveable> existsMoveables;// list of exists vechicles on road
+    int countLines; //lines on road
+    int speedLimit; // speed limit on road
 
     public List<? extends Moveable> getExistsMoveables() {
         return existsMoveables;
@@ -25,19 +25,48 @@ public abstract class Trace {
         this.existsMoveables = existsMoveables;
     }
 
-
-    public Car findCarByName(String name){
-        for (Moveable vechicle:existsMoveables) {
-            if ((vechicle instanceof Car)){
-                Car car=(Car)vechicle;
-                if (car.getLabel().equals(name)){
-                    return car;
+    /**
+     *
+     * @param manufacturer title
+     * @return moveables made by this ,manufacturer
+     */
+    public List<Moveable> findByManufacturer(Manufacturer manufacturer){
+        List<Moveable> list=new ArrayList<>();
+        for(Moveable vehicle:existsMoveables){
+            if(vehicle instanceof Car){
+                if (((Car) vehicle).getManufacturer()==manufacturer){
+                    list.add(vehicle);
                 }
+            }else if (vehicle instanceof Motocycle){
+                list.add(vehicle);
             }
         }
-        return null;
+        return list;
     }
 
+    /**
+     *
+     * @param label of vechicle
+     * @param manufacturer title
+     * @return true if this vehicle founded
+     */
+    public boolean findVehicleByAttrs(String label,Manufacturer manufacturer){
+        for(Moveable vehicle:existsMoveables){
+                    if(vehicle instanceof Car){
+                        Car car = (Car)vehicle;
+                        return car.getManufacturer().equals(manufacturer)&&car.getLabel().equals(label);
+                    }else if(vehicle instanceof Motocycle){
+                        Motocycle motocycle=(Motocycle) vehicle;
+                        return motocycle.getManufacturer().equals(manufacturer)&&motocycle.getLabel().equals(label);
+                    }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @return cars count at this moment on this road
+     */
     public int carCounter(){
         int count=0;
         for (Moveable vechicle:existsMoveables) {
@@ -48,6 +77,10 @@ public abstract class Trace {
         return count;
     }
 
+    /**
+     *
+     * @return truck count at this moment on this road
+     */
     public int truckCounter(){
         int count=0;
         for (Moveable vechicle:existsMoveables) {
